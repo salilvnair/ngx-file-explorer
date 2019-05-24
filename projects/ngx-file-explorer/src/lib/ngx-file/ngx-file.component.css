@@ -1,0 +1,14 @@
+.all-item { list-style-type: none;display:inline; }
+.file-item { padding-left: 0px; }
+.children-items {
+  padding-left: 25px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.focus { color: steelblue }
+.nobr{
+    white-space: nowrap;
+}
+.file-name-span {
+  margin-left: 5px;
+}

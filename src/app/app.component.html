@@ -1,0 +1,9 @@
+<ngx-file-explorer 
+  [root]="rootFileNode"
+  [expandAll] = "expandAll"
+  [collapseAll] = "collapseAll"
+  [keyboardWatch]=true>
+</ngx-file-explorer>
+
+<input type="button" value="ExpandAll" (click)="expandAllNodes()">
+<input type="button" value="CollapseAll" (click)="collapseAllNodes()">

@@ -1,0 +1,40 @@
+<li class="all-item">
+    <div *ngIf="node.isFolder">
+        <a (click)="clickItem(node)"
+            class="folder-item"
+            [ngClass]="{focus: node._focus}">
+            <span class="point" (click)="clickFolderExpand(node)"> 
+                <fa-icon [icon]="['fas', 'caret-right']" *ngIf="!(node.isExpanded)"></fa-icon>
+                <fa-icon [icon]="['fas', 'caret-down']" *ngIf="node.isExpanded"></fa-icon> 
+            </span>
+            <fa-icon [icon]="['fas', 'folder']"  *ngIf="!(node.isExpanded)"></fa-icon>
+            <fa-icon [icon]="['fas', 'folder-open']"  *ngIf="node.isExpanded"></fa-icon>
+            {{ node.name }}
+        </a>
+        <ul *ngIf="node.isExpanded" class="children-items">
+            <ngx-file *ngFor="let n of node.children" [node]="n" (clicked)="propagate($event)"></ngx-file>
+        </ul>
+    </div>
+    <div *ngIf="!node.isFolder">
+        <a (click)="clickItem(node)"
+            class="file-item"
+            [ngClass]="{focus: node._focus}">
+            <ng-container *ngIf="fileType(node.name)==='java'">
+                <fa-icon [styles]="{'stroke': 'red', 'color': 'steelblue'}" [icon]="['fab', 'java']"></fa-icon>
+            </ng-container>
+            <ng-container *ngIf="fileType(node.name)==='js'">
+                <fa-icon [style.color]="node.color" [icon]="['fab', 'js']"></fa-icon>
+            </ng-container>
+            <ng-container *ngIf="fileType(node.name)==='jsp'">
+                <fa-icon [style.color]="node.color" [icon]="['fab', 'html5']"></fa-icon>
+            </ng-container>
+            <ng-container *ngIf="fileType(node.name)==='xml'">
+                <fa-icon [style.color]="node.color" [icon]="['fas', 'file-code']"></fa-icon>
+            </ng-container>
+            <ng-container *ngIf="fileType(node.name)==='jpg'||fileType(node.name)==='jpeg'||fileType(node.name)==='png'">
+                <fa-icon [style.color]="node.color" [icon]="['fas', 'file-image']"></fa-icon>
+            </ng-container>
+            <span class="file-name-span" [style.color]="node.color">{{ node.name }}</span>
+        </a>
+    </div>
+</li>
